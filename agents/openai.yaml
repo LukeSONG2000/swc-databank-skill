@@ -1,4 +1,4 @@
 interface:
-  display_name: "星球大战中文译名查询"
-  short_description: "查询星球大战中文网的中英译名，支持批量查询、按类别筛选和分页"
-  default_prompt: "用 $star-wars-china-glossary 核对 Darth Vader 和 Millennium Falcon 的中文译名。"
+  display_name: "星球大战中文网数据库"
+  short_description: "接入星球大战中文网的公开查询服务，目前支持实时中英译名查询"
+  default_prompt: "用 $swc-databank-skill 核对 Darth Vader 和 Millennium Falcon 的中文译名。"
