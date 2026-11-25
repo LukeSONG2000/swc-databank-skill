@@ -5,9 +5,9 @@ description: 接入星球大战中文网的公开查询服务，目前提供实�
 
 # 星球大战中文网数据库
 
-StarWarsChina Database 的主站是星球大战中文网，目前提供译名查询。[主站入口](http://www.starwarschina.com/)
+StarWarsChina Database 接入星球大战中文网，目前只有下列子功能。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
 
-## 译名查询
+## glossary 译名管理系统
 
 用 Python 3 运行本技能目录下的 `scripts/lookup.py`。每个参数是一个独立的中文或英文词条。先用完整专名，查询多个词条时各自传入。
 

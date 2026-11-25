@@ -2,11 +2,11 @@
 
 **StarWarsChina Database**
 
-这个 AI Skill 接入星球大战中文网的公开查询服务。目前唯一的子功能是译名查询。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
+这个 AI Skill 接入星球大战中文网的公开查询服务。目前只有下列子功能。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
 
 ## 子功能
 
-### 星球大战译名查询
+### glossary 译名管理系统
 
 实时核对星战专名，支持中英互查、批量查询、类别筛选和分页，优先返回完全匹配的词条。[子功能入口｜星球大战译名管理系统](http://starwarschina.com/glossary/)
 
