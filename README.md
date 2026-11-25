@@ -4,6 +4,8 @@
 
 这个 AI Skill 接入星球大战中文网的译名管理系统和资料库。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
 
+写作、翻译或设计涉及星战专名和设定时，Skill 也会主动核对成品所需的译名和资料。
+
 ## 子功能
 
 ### glossary 译名管理系统
@@ -15,6 +17,8 @@
 ### databank 资料库
 
 按中英文名称检索角色、地点、飞船等分类索引，也可按条目 ID 或链接读取主帖正文。索引和正文来自星球大战中文网。[子功能入口｜资料库（Databank）索引](https://www.starwarsfans.cn/portal.php?mod=list&catid=13)
+
+查询答复会附上所用中文网独立条目的直达链接。译名管理系统的查询默认直接给译名。
 
 ## 安装与使用
 
@@ -31,6 +35,8 @@ git clone https://github.com/LukeSONG2000/swc-databank-skill.git \
 
 > 用 $swc-databank-skill 在资料库找千年隼号，并概述条目里的设定。
 
+> 为以科洛桑为背景的星战导览写一段中文展签。
+
 也可以在仓库目录运行脚本，获取 JSON 结果。
 
 ```sh
@@ -42,7 +48,9 @@ python3 scripts/databank.py read 14227
 
 ## 从仓库更新
 
-通过 Git 安装后，可以在 Codex 中说「用 $swc-databank-skill 从仓库更新这个 Skill」，或运行以下命令。
+从本仓库克隆后，使用时会在后台静默检查更新，同一安装目录最多每 24 小时检查一次。工作区的已跟踪文件干净且 `main` 可以快进时，会自动应用新版。更新成功后，macOS 会尝试发出系统通知，无法发出系统通知时会在查询答复中提示。
+
+需要立即更新时，可以在 Codex 中说「用 $swc-databank-skill 从仓库更新这个 Skill」，或运行以下命令。
 
 ```sh
 git -C "${CODEX_HOME:-$HOME/.codex}/skills/swc-databank-skill" pull --ff-only

@@ -11,6 +11,8 @@ from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from skill_update import start_update_check, take_update_notice
+
 
 SOURCE_NAME = "星球大战中文网译名管理系统"
 HTTP_URL = "http://starwarschina.com/glossary/"
@@ -171,11 +173,13 @@ def main():
     if args.page < 1:
         parser.error("页码必须大于等于 1")
 
+    start_update_check()
     client = GlossaryClient()
     queries = [lookup(client, keyword, args.category, args.page) for keyword in keywords]
     print(json.dumps({
         "source": {"name": SOURCE_NAME, "url": client.url},
         "queries": queries,
+        **take_update_notice(),
     }, ensure_ascii=False, indent=2))
     return int(any(query["status"] == "error" for query in queries))
 

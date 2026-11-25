@@ -11,6 +11,8 @@ from http.client import HTTPException
 from urllib.parse import parse_qs, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from skill_update import start_update_check, take_update_notice
+
 SITE = "https://www.starwarsfans.cn"
 INDEX_URL = f"{SITE}/portal.php?mod=list&catid=13"
 SOURCE = {"name": "星球大战中文网资料库", "url": INDEX_URL}
@@ -301,6 +303,7 @@ def main():
     read_args.add_argument("--max-chars", type=int, default=8000, help="最多返回多少字符")
     args = parser.parse_args()
 
+    start_update_check()
     try:
         if args.command == "categories":
             result = {"status": "ok", "categories": categories()}
@@ -320,7 +323,7 @@ def main():
     except DatabankError as error:
         result = {"status": "error", **error.details()}
 
-    print(json.dumps({"source": SOURCE, **result}, ensure_ascii=False, indent=2))
+    print(json.dumps({"source": SOURCE, **result, **take_update_notice()}, ensure_ascii=False, indent=2))
     return int(result["status"] in ("partial", "error"))
 
 
