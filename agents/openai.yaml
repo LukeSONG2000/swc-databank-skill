@@ -1,4 +1,4 @@
 interface:
   display_name: "星球大战中文网数据库"
-  short_description: "查询星球大战中文网的中英译名、资料库条目及其设定正文"
+  short_description: "查询星球大战中文网的中英译名、资料库设定及站内文章和帖子"
   default_prompt: "用 $swc-databank-skill 查「千年隼号」的英文名，并读取资料库条目。"

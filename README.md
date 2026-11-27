@@ -2,7 +2,7 @@
 
 **StarWarsChina Database**
 
-这个 AI Skill 接入星球大战中文网的译名管理系统和资料库。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
+这个 AI Skill 提供星球大战中文网的译名查询、资料库查询和站内检索。[主站入口｜星球大战中文网](http://www.starwarschina.com/)
 
 写作、翻译或设计涉及星战专名和设定时，Skill 也会主动核对成品所需的译名和资料。
 
@@ -20,6 +20,10 @@
 
 查询答复会附上所用中文网独立条目的直达链接。译名管理系统的查询默认直接给译名。
 
+### search 站内检索
+
+通过原站搜索查询公开论坛帖子，返回标题、摘要、直达链接和分页信息。门户文章通过 AI 客户端的公开网页搜索限定站点查找，覆盖取决于网页索引。[子功能入口｜论坛搜索](https://www.starwarsfans.cn/search.php?mod=forum)
+
 ## 安装与使用
 
 需要 Git、Python 3 和访问原站的网络。在 Codex 中使用时，将仓库克隆到技能目录。
@@ -35,6 +39,8 @@ git clone https://github.com/LukeSONG2000/swc-databank-skill.git \
 
 > 用 $swc-databank-skill 在资料库找千年隼号，并概述条目里的设定。
 
+> 用 $swc-databank-skill 找找中文网论坛讨论千年隼号历任船主的帖子。
+
 > 为以科洛桑为背景的星战导览写一段中文展签。
 
 也可以在仓库目录运行脚本，获取 JSON 结果。
@@ -44,6 +50,7 @@ python3 scripts/lookup.py -- 'Darth Vader' '千年隼号'
 python3 scripts/databank.py categories
 python3 scripts/databank.py search --category 星际飞船 -- '千年隼号'
 python3 scripts/databank.py read 14227
+python3 scripts/site_search.py -- '千年隼号'
 ```
 
 ## 从仓库更新

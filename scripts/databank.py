@@ -62,8 +62,9 @@ class Element:
 class DatabankPage(HTMLParser):
     """Keep the Discuz article, breadcrumbs, title, and post regions."""
 
-    def __init__(self):
+    def __init__(self, region_ids=("article_content", "pt", "thread_subject")):
         super().__init__()
+        self.region_ids = region_ids
         self.regions = {}
         self.stack = []
 
@@ -71,7 +72,7 @@ class DatabankPage(HTMLParser):
         fields = dict(attrs)
         if not self.stack:
             key = fields.get("id") or ""
-            if key not in ("article_content", "pt", "thread_subject") and not key.startswith("postmessage_"):
+            if key not in self.region_ids and not key.startswith("postmessage_"):
                 return
             element = self.regions[key] = Element(tag, fields)
         else:
@@ -104,7 +105,7 @@ class StarWarsRedirects(HTTPRedirectHandler):
         )
 
 
-def fetch_page(url):
+def fetch_page(url, page=None):
     try:
         opener = build_opener(StarWarsRedirects())
         request = Request(url, headers={"Accept": "text/html"})
@@ -113,15 +114,16 @@ def fetch_page(url):
                 raise DatabankError("unexpected_response", "原站返回了非 HTML 响应")
             data = response.read(MAX_PAGE_BYTES + 1)
     except (OSError, HTTPException) as error:
-        raise DatabankError("source_unavailable", "无法访问资料库页面") from error
+        raise DatabankError("source_unavailable", "无法访问星球大战中文网") from error
     if len(data) > MAX_PAGE_BYTES:
-        raise DatabankError("unexpected_response", "资料库页面超出单页大小限制")
+        raise DatabankError("unexpected_response", "原站响应超出单页大小限制")
     try:
-        page = DatabankPage()
+        if page is None:
+            page = DatabankPage()
         page.feed(data.decode("utf-8"))
         page.close()
     except ValueError as error:
-        raise DatabankError("unexpected_response", "无法解析资料库页面") from error
+        raise DatabankError("unexpected_response", "无法解析原站响应") from error
     return page
 
 
